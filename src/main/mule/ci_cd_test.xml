@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="ci_cd_testSub_Flow" doc:id="df413e0a-bea1-40d2-9bf4-a8ccb738e497" >
+		<set-payload value='#[{&#10;  "fields": [&#10;    {&#10;      "aggregatable": true,&#10;      "custom": false,&#10;      "defaultValue": null,&#10;      "extraTypeInfo": null,&#10;      "filterable": true,&#10;      "groupable": true,&#10;      "inlineHelpText": null,&#10;      "label": "Attachment ID",&#10;      "name": "Id",&#10;      "nillable": false,&#10;      "picklistValues": [],&#10;      "referenceTo": [],&#10;      "relationshipName": null,&#10;      "sortable": true,&#10;      "type": "id"&#10;    }]&#10;}]' doc:name="Set Payload" doc:id="93210d40-8f57-4099-9811-53ea2c5eb20b" />
+		<ee:transform doc:name="Transform Message" doc:id="010267fa-05ba-4ece-abf3-1c49655a555e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+  "success" : true,
+  "message" : "Record has been successfully patched to S-SF-User"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="50bd0820-316d-4398-9a1d-00d244049cfd" message="#[payload]"/>
+	</sub-flow>
+</mule>
