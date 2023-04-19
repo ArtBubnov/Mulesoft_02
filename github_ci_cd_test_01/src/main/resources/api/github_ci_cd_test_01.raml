@@ -1,0 +1,36 @@
+#%RAML 1.0
+types:
+  address:
+    example:
+      strict: true
+      value:
+        street: test
+        city: test
+    properties:
+      street?:
+        example: Example
+        type: string
+      city?:
+        example: Example
+        type: string
+title: github_ci_cd_test_01
+baseUri: api.githubCiCdTest.com
+mediaType:
+  - application/json
+version: 1.0.0
+protocols:
+  - HTTPS
+  - HTTP
+/address:
+  get:
+    displayName: address
+    responses:
+      "200":
+        body:
+          application/json:
+            example:
+              strict: true
+              value:
+                street: test
+                city: test
+            type: object
