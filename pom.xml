@@ -40,6 +40,13 @@
 					<workerType>${env.WORKERS_TYPE}</workerType>
 					<objectStoreV2>${env.OBJECT_STORE_V2}</objectStoreV2>
 					<region>${env.REGION}</region>
+					<properties>
+						<prop_01_pom_node>${env.prop_01_pom_var}</prop_01_pom_node>
+						<prop_02_pom_node>${env.prop_02_pom_var}</prop_02_pom_node>
+						<prop_03_pom_node>${env.prop_03_pom_var}</prop_03_pom_node>
+						<prop_04_pom_node>${env.prop_04_pom_var}</prop_04_pom_node>
+						<prop_05_pom_node>${env.prop_05_pom_var}</prop_05_pom_node>
+					</properties>
 				</cloudHubDeployment>
 				</configuration>
 			</plugin>
