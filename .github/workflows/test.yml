@@ -31,4 +31,4 @@ jobs:
 
       - name: Build with Maven
         #run: mvn clean -B package -s .maven/settings.xml 
-        run:  mvn clean deploy "-DmuleDeploy" -s .maven/settings.xml -X
+        run:  mvn clean deploy "-DmuleDeploy" "-Denv=dev" -s .maven/settings.xml -X
