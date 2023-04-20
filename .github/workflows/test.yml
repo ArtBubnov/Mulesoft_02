@@ -1,5 +1,5 @@
 name: my test
-#123
+#1231
 
 on:
   push:
@@ -11,11 +11,6 @@ jobs:
     env:
       PLATFORM_USERNAME: artem_Bubnov
       PLATFORM_PASSWORD: zvGF62HVCWpyzsPP
-      #ENV: dev
-      #WORKERS: 1
-      #WORKER_TYPE: MICRO
-      #OBJECT_STORE_V2: true
-      #REGION: us-east-2
 
     steps:
       - name: test

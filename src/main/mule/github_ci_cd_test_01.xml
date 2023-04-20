@@ -130,7 +130,8 @@ output application/json
 output application/json
 ---
 {
-  "prop_1": "123"
+  street: "test_01",
+  city: "test_01"
 }]]></ee:set-payload>
             </ee:message>
         </ee:transform>
