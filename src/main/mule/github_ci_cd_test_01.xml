@@ -130,12 +130,7 @@ output application/json
 output application/json
 ---
 {
-  prop_1: p('mule.prop_1'),
-  prop_2: p('mule.prop_2'),
-  prop_3: p('mule.prop_3'),
-  prop_4: p('mule.prop_4'),
-  prop_5: p('mule.prop_5'),
-  prop_6: p('mule.prop_6')
+  "prop_1": "123"
 }]]></ee:set-payload>
             </ee:message>
         </ee:transform>
