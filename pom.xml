@@ -35,11 +35,11 @@
 					<username>${env.PLATFORM_USERNAME}</username>
 					<password>${env.PLATFORM_PASSWORD}</password>
 					<applicationName>${project.artifactId}-${env.ENV}</applicationName>
-					<environment>DEV</environment>
-					<workers>1</workers>
-					<workerType>MICRO</workerType>
-					<objectStoreV2>true</objectStoreV2>
-					<region>us-east-2</region>
+					<environment>${env.ENV}</environment>
+					<workers>${env.WORKERS}</workers>
+					<workerType>${env.WORKERS_TYPE}</workerType>
+					<objectStoreV2>${env.OBJECT_STORE_V2}</objectStoreV2>
+					<region>${env.REGION}</region>
 				</cloudHubDeployment>
 				</configuration>
 			</plugin>
