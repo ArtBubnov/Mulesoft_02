@@ -34,8 +34,8 @@
 					<muleVersion>4.4.0</muleVersion>
 					<username>${env.PLATFORM_USERNAME}</username>
 					<password>${env.PLATFORM_PASSWORD}</password>
-					<applicationName>cicd-githubactions-apfeb22</applicationName>
-					<environment>Sandbox</environment>
+					<applicationName>cicd-githubactions-apfeb22-dev</applicationName>
+					<environment>DEV</environment>
 					<workers>1</workers>
 					<workerType>MICRO</workerType>
 					<objectStoreV2>true</objectStoreV2>
