@@ -11,6 +11,7 @@ jobs:
     env:
       PLATFORM_USERNAME: artem_Bubnov
       PLATFORM_PASSWORD: zvGF62HVCWpyzsPP
+      ENV: DEV
 
     steps:
       - name: test
