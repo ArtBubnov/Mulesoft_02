@@ -8,7 +8,7 @@ on:
 jobs:
   dev:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/qa'
+    if: github.ref == 'refs/heads/dev'
     steps:
       - name: trigger test
         run: echo "test DEV branch triggered"
@@ -27,11 +27,11 @@ jobs:
       OBJECT_STORE_V2: ${{ vars.OBJECT_STORE_V2_GITHUB_VALUE }}
       REGION: ${{ vars.REGION_GITHUB_VALUE }}
 #POM <properties>
-      prop_01_pom_var: prop_01_pom_var_value
-      prop_02_pom_var: prop_02_pom_var_value
-      prop_03_pom_var: prop_03_pom_var_value
-      prop_04_pom_var: prop_04_pom_var_value
-      prop_05_pom_var: prop_05_pom_var_value
+      prop_01_pom_var: ${{ vars.DEV_PROP_01_POM_VAR_GITHUB_VALUE }}
+      prop_02_pom_var: ${{ vars.DEV_PROP_02_POM_VAR_GITHUB_VALUE }}
+      prop_03_pom_var: ${{ vars.DEV_PROP_03_POM_VAR_GITHUB_VALUE }}
+      prop_04_pom_var: ${{ vars.DEV_PROP_04_POM_VAR_GITHUB_VALUE }}
+      prop_05_pom_var: ${{ vars.DEV_PROP_05_POM_VAR_GITHUB_VALUE }}
 
     steps:
       - name: test
@@ -52,6 +52,6 @@ jobs:
             ${{ runner.os }}-maven- 
 
       - name: Build with Maven
-        run: echo "test"
+        #run: echo "test"
         #run: mvn clean -B package -s .maven/settings.xml  -X
-        #run:  mvn clean deploy "-DmuleDeploy" "-Denv=dev" -s .maven/settings.xml
+        run:  mvn clean deploy "-DmuleDeploy" "-Denv=dev" -s .maven/settings.xml
