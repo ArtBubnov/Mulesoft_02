@@ -6,6 +6,16 @@ on:
     branches: [ dev ]
 
 jobs:
+  dev:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+    steps:
+      - name: trigger test
+        run: echo "test DEV branch triggered"
+
+
+
+
   build:
     runs-on: ubuntu-latest
     env:
