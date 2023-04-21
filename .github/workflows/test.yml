@@ -28,6 +28,7 @@ jobs:
         run: |
           echo "test"
           echo "test 2"
+          echo $WORKERS_GITHUB_VALUE
 
       - name: Checkout repository
         uses: actions/checkout@v2
