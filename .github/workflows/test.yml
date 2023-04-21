@@ -9,10 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE}}
-      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE}}
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
       ENV: DEV
-      WORKERS: $WORKERS_GITHUB_VALUE
+      WORKERS: ${{ vars.WORKERS_GITHUB_VALUE }}
       WORKERS_TYPE: $WORKERS_TYPE_GITHUB_VALUE
       OBJECT_STORE_V2: $OBJECT_STORE_V2_GITHUB_VALUE
       REGION: $REGION_GITHUB_VALUE
@@ -28,7 +28,7 @@ jobs:
         run: |
           echo "test"
           echo "test 2"
-          echo $WORKERS_GITHUB_VALUE
+          echo ${{ vars.WORKERS_GITHUB_VALUE }}
 
       - name: Checkout repository
         uses: actions/checkout@v2
