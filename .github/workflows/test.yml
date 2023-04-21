@@ -28,47 +28,8 @@ jobs:
         run: |
           echo "test"
           echo "test 2"
-          echo ${{ vars.WORKERS_GITHUB_VALUE }}
-          echo "props test-----------------"
-          echo "DEV"
-          echo ${{ vars.DEV_PROP_01_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.DEV_PROP_02_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.DEV_PROP_03_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.DEV_PROP_04_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.DEV_PROP_05_POM_VAR_GITHUB_VALUE }}
-
-
-          echo "QA"
-          echo ${{ vars.QA_PROP_01_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.QA_PROP_02_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.QA_PROP_03_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.QA_PROP_04_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.QA_PROP_05_POM_VAR_GITHUB_VALUE }}
-
-
-          echo "STAGING"
-          echo ${{ vars.STAGING_PROP_01_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.STAGING_PROP_02_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.STAGING_PROP_03_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.STAGING_PROP_04_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.STAGING_PROP_05_POM_VAR_GITHUB_VALUE }}
-
-
-          echo "UAT"
-          echo ${{ vars.UAT_PROP_01_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.UAT_PROP_02_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.UAT_PROP_03_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.UAT_PROP_04_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.UAT_PROP_05_POM_VAR_GITHUB_VALUE }}
-
-
-          echo "PROD"
-          echo ${{ vars.PROD_01_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.PROD_01_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.PROD_01_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.PROD_01_POM_VAR_GITHUB_VALUE }}
-          echo ${{ vars.PROD_01_POM_VAR_GITHUB_VALUE }}
-
+          echo ${{ github.ref }}
+  
       - name: Checkout repository
         uses: actions/checkout@v2
 
