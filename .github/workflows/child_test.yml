@@ -1,0 +1,8 @@
+name: child test
+
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: trigger test
+        run: echo "child job has been triggered triggered"
