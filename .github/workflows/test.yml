@@ -3,15 +3,85 @@ name: my test
 
 on:
   push:
-    branches: [ dev ]
+    branches: 
+      - dev
+      - qa
+      - staging
+      - uat
+      - prod
+
+
+
 
 jobs:
+
+
   dev:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/dev'
     steps:
       - name: trigger test
         run: echo "test DEV branch triggered"
+
+  qa:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/qa'
+    steps:
+      - name: trigger test
+        run: echo "test QA branch triggered"
+
+  staging:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/staging'
+    steps:
+      - name: trigger test
+        run: echo "test STAGING branch triggered"
+
+  uat:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/uat'
+    steps:
+      - name: trigger test
+        run: echo "test UAT branch triggered"
+
+  prod:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/prod'
+    steps:
+      - name: trigger test
+        run: echo "test PROD branch triggered"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -51,7 +121,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven- 
 
-      - name: Build with Maven
+      #- name: Build with Maven
         #run: echo "test"
         #run: mvn clean -B package -s .maven/settings.xml  -X
-        run:  mvn clean deploy "-DmuleDeploy" "-Denv=dev" -s .maven/settings.xml
+        #run:  mvn clean deploy "-DmuleDeploy" "-Denv=dev" -s .maven/settings.xml
