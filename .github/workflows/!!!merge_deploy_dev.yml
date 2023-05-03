@@ -4,7 +4,7 @@ name: deploy project to dev env
 on:
   push:
     branches:
-      - 'dev/**'
+      - 'dev**'
 #      - dev_project_1
 #      - dev_project_2
 #      - dev_project_3
