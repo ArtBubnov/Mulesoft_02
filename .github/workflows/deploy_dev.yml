@@ -3,6 +3,12 @@ name: deploy project to dev env
 #runs whenever a pull request has been approved
 on:
   pull_request_review:
+    branches:
+      - dev
+      - dev_project_1
+      - dev_project_2
+      - dev_project_3
+      - dev_project_4
     types: [submitted]
 
 
@@ -12,12 +18,62 @@ on:
 #depends on the context of an event
 #depends on the number of projects the list of the jobs can be expanded or shortened.
 
+#job:dev               --- runs whenever a pull request, where target branch is dev,           has been approved
 #job:dev_project_1     --- runs whenever a pull request, where target branch is dev_project_1, has been approved
 #job:dev_project_2     --- runs whenever a pull request, where target branch is dev_project_2, has been approved
 #job:dev_project_3     --- runs whenever a pull request, where target branch is dev_project_3, has been approved
 #job:dev_project_4     --- runs whenever a pull request, where target branch is dev_project_4, has been approved
 
 jobs:
+
+  #job:dev logic implementation start
+  #    --- runs whenever a pull request, where target branch is dev, has been approved
+  dev:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.base.ref == 'dev'
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
+    env:
+    #POM <cloudHubDeployment>
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+      ENV: DEV
+      WORKERS: ${{ vars.WORKERS_GITHUB_VALUE }}
+      WORKERS_TYPE: ${{ vars.WORKERS_TYPE_GITHUB_VALUE }}
+      OBJECT_STORE_V2: ${{ vars.OBJECT_STORE_V2_GITHUB_VALUE }}
+      REGION: ${{ vars.REGION_GITHUB_VALUE }}
+    #POM cloudHubDeployment --> <properties>
+      prop_01_pom_var: ${{ vars.DEV_PROP_01_POM_VAR_GITHUB_VALUE }}
+      prop_02_pom_var: ${{ vars.DEV_PROP_02_POM_VAR_GITHUB_VALUE }}
+      prop_03_pom_var: ${{ vars.DEV_PROP_03_POM_VAR_GITHUB_VALUE }}
+      prop_04_pom_var: ${{ vars.DEV_PROP_04_POM_VAR_GITHUB_VALUE }}
+      prop_05_pom_var: ${{ vars.DEV_PROP_05_POM_VAR_GITHUB_VALUE }}
+
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step deploys data to DEV Mulesoft env
+      #- name: Build with Maven
+        #run:  mvn clean deploy "-DmuleDeploy" "-Denv=dev" "-DskipMunitBoolean=true" -s .maven/settings.xml
+
+#job:dev logic implementation end
+
+
+
 
   #job:dev_project_1 logic implementation start
   #    --- runs whenever a pull request, where target branch is dev_project_1, has been approved
