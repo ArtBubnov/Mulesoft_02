@@ -1,16 +1,28 @@
 name: deploy project to prod env
 
-#runs whenever a pull request has been approved
+#there are 2 possible ways to trigger deploy workflow
+#1 - runs whenever branches are merged during pull request
+#2 - runs whenever a pull request has been approved
 on:
-  pull_request_review:
-    branches:
+#1 way to trigger worflow. Start
+  push:
       - prod
       - prod_project_1
       - prod_project_2
       - prod_project_3
       - prod_project_4
-    types: [submitted]
+#1 way to trigger worflow. End
 
+#2 way to trigger worflow. Start
+#  pull_request_review:
+#    branches:
+#      - prod
+#      - prod_project_1
+#      - prod_project_2
+#      - prod_project_3
+#      - prod_project_4
+#    types: [submitted]
+#2 way to trigger worflow. End
 
 
 
