@@ -54,7 +54,7 @@ jobs:
       - name: logger
         run: |
           echo "branches has been mertged"
-          echo 'the following is targer branch: ${{ github.ref.name }}'
+          echo 'the following is targer branch: $GITHUB_REF_NAME'
           echo ${{ github.ref.name }}
 
       #This step performs:
