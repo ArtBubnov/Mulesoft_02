@@ -43,7 +43,8 @@ jobs:
   #    --- runs whenever a pull request, where target branch is dev, has been approved
   dev:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.base.ref == 'dev'
+    if: GITHUB_REF_NAME == "dev"
+    #if: github.event.pull_request.base.ref == 'dev'
     #in the env section below variables for mulesoft project pom file for the following sections should be defined:
     #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
     #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
