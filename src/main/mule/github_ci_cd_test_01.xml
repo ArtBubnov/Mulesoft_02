@@ -130,8 +130,7 @@ output application/json
 output application/json
 ---
 {
-  street: "test_01",
-  city: "test_01"
+  "prop_1": p('mule.prop_1')
 }]]></ee:set-payload>
             </ee:message>
         </ee:transform>

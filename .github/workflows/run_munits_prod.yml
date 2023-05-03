@@ -1,0 +1,173 @@
+name: run munit tests before deploy to prod env
+
+
+#runs whenever a pull request has been created
+on:
+  pull_request:
+    branches:
+      - prod_project_1
+      - prod_project_2
+      - prod_project_3
+      - prod_project_4
+    types: [opened, reopened, synchronize]
+
+
+
+
+#list of the jobs that can be runned
+#depends on the context of an event
+#depends on the number of projects the list of the jobs can be expanded or shortened.
+
+#job:prod_project_1     --- runs whenever a pull request, where target branch is prod_project_1, has been created
+#job:prod_project_2     --- runs whenever a pull request, where target branch is prod_project_2, has been created
+#job:prod_project_3     --- runs whenever a pull request, where target branch is prod_project_3, has been created
+#job:prod_project_4     --- runs whenever a pull request, where target branch is prod_project_4, has been created
+
+
+
+
+jobs:
+
+  #job:prod_project_1 logic implementation start
+  #    --- runs whenever a pull request, where target branch is prod_project_1, has been created
+  prod_project_1:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.base.ref == 'prod_project_1'
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
+    env:
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step deploys data to PROD Mulesoft env
+      #- name: Build with Maven
+        #run:  mvn clean test "-DskipMunitBoolean=false" -s .maven/settings.xml
+
+#job:prod_project_1 logic implementation end
+
+
+
+
+  #job:prod_project_2 logic implementation start
+  #    --- runs whenever a pull request, where target branch is prod_project_2, has been created
+  prod_project_2:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.base.ref == 'prod_project_2'
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
+    env:
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step deploys data to PROD Mulesoft env
+      #- name: Build with Maven
+        #run:  mvn clean test "-DskipMunitBoolean=false" -s .maven/settings.xml
+
+#job:prod_project_2 logic implementation end
+
+
+
+  #job:prod_project_3 logic implementation start
+  #    --- runs whenever a pull request, where target branch is prod_project_3, has been created
+  prod_project_3:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.base.ref == 'prod_project_3'
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
+    env:
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step deploys data to PROD Mulesoft env
+      #- name: Build with Maven
+        #run:  mvn clean test "-DskipMunitBoolean=false" -s .maven/settings.xml
+
+#job:prod_project_3 logic implementation end
+
+
+
+
+  #job:prod_project_4 logic implementation start
+  #    --- runs whenever a pull request, where target branch is prod_project_4, has been created
+  prod_project_4:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.base.ref == 'prod_project_4'
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
+    env:
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step deploys data to PROD Mulesoft env
+      #- name: Build with Maven
+        #run:  mvn clean test "-DskipMunitBoolean=false" -s .maven/settings.xml
+
+#job:prod_project_4 logic implementation end
