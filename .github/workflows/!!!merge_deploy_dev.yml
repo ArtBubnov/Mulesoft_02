@@ -55,7 +55,6 @@ jobs:
         run: |
           echo "branches has been mertged"
           echo 'the following is targer branch: '$GITHUB_REF_NAME
-          echo ${{ github.ref.name }}
 
       #This step performs:
       # 1. add new dependencies in cache
