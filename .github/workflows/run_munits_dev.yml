@@ -4,6 +4,11 @@ name: run munit tests before deploy to dev env
 #runs whenever a pull request has been created
 on:
   pull_request:
+    branches:
+      - dev_project_1
+      - dev_project_2
+      - dev_project_3
+      - dev_project_4
     types: [opened, reopened, synchronize]
 
 

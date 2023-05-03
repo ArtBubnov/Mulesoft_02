@@ -4,6 +4,11 @@ name: run munit tests before deploy to staging env
 #runs whenever a pull request has been created
 on:
   pull_request:
+    branches:
+      - staging_project_1
+      - staging_project_2
+      - staging_project_3
+      - staging_project_4
     types: [opened, reopened, synchronize]
 
 

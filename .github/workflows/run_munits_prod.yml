@@ -4,6 +4,11 @@ name: run munit tests before deploy to prod env
 #runs whenever a pull request has been created
 on:
   pull_request:
+    branches:
+      - prod_project_1
+      - prod_project_2
+      - prod_project_3
+      - prod_project_4
     types: [opened, reopened, synchronize]
 
 
