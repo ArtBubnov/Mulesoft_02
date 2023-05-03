@@ -53,9 +53,8 @@ jobs:
 
       - name: logger
         run: |
-          echo "test 1"
-          echo "test 2"
-          echo "test 3"
+          echo "branches has been mertged"
+          echo "the following is targer branch: ${{ github.ref.name }}"
 
       #This step performs:
       # 1. add new dependencies in cache
