@@ -5,6 +5,7 @@ name: run munit tests before deploy to uat env
 on:
   pull_request:
     branches:
+      - uat
       - uat_project_1
       - uat_project_2
       - uat_project_3

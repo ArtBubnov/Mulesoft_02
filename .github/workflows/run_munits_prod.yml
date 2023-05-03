@@ -5,6 +5,7 @@ name: run munit tests before deploy to prod env
 on:
   pull_request:
     branches:
+      - prod
       - prod_project_1
       - prod_project_2
       - prod_project_3

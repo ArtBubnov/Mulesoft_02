@@ -5,6 +5,7 @@ name: run munit tests before deploy to qa env
 on:
   pull_request:
     branches:
+      - qa
       - qa_project_1
       - qa_project_2
       - qa_project_3

@@ -5,6 +5,7 @@ name: run munit tests before deploy to staging env
 on:
   pull_request:
     branches:
+      - staging
       - staging_project_1
       - staging_project_2
       - staging_project_3
