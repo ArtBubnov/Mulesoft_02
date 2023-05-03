@@ -1,56 +1,264 @@
-name: my test
-#123121
+name: deploy
 
+#runs whenever a pull request has been approved
 on:
-  push:
-    branches: 
-      - dev
-      - qa
-      - staging
-      - uat
-      - prod
+  pull_request_review:
+    types: [submitted]
 
 
+
+
+#list of the jobs that can be runned
+#depends on the context of an event
+
+#job:dev     --- runs whenever a pull request where target branch is DEV     has been approved
+#job:qa      --- runs whenever a pull request where target branch is QA      has been approved
+#job:staging --- runs whenever a pull request where target branch is STAGING has been approved
+#job:uat     --- runs whenever a pull request where target branch is UAT     has been approved
+#job:prod    --- runs whenever a pull request where target branch is PROD    has been approved
 
 
 jobs:
 
-
+  #job:dev logic implementation start
+  #    --- runs whenever a pull request where target branch is DEV has been approved
   dev:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/dev'
-    steps:
-      - name: trigger test
-        run: echo "test DEV branch triggered"
+    if: github.event.pull_request.base.ref == 'dev'
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
+    env:
+    #POM <cloudHubDeployment>
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+      ENV: DEV
+      WORKERS: ${{ vars.WORKERS_GITHUB_VALUE }}
+      WORKERS_TYPE: ${{ vars.WORKERS_TYPE_GITHUB_VALUE }}
+      OBJECT_STORE_V2: ${{ vars.OBJECT_STORE_V2_GITHUB_VALUE }}
+      REGION: ${{ vars.REGION_GITHUB_VALUE }}
+    #POM cloudHubDeployment --> <properties>
+      prop_01_pom_var: ${{ vars.DEV_PROP_01_POM_VAR_GITHUB_VALUE }}
+      prop_02_pom_var: ${{ vars.DEV_PROP_02_POM_VAR_GITHUB_VALUE }}
+      prop_03_pom_var: ${{ vars.DEV_PROP_03_POM_VAR_GITHUB_VALUE }}
+      prop_04_pom_var: ${{ vars.DEV_PROP_04_POM_VAR_GITHUB_VALUE }}
+      prop_05_pom_var: ${{ vars.DEV_PROP_05_POM_VAR_GITHUB_VALUE }}
 
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step deploys data to DEV Mulesoft env
+      #- name: Build with Maven
+        #run:  mvn clean deploy "-DmuleDeploy" "-Denv=dev" -s .maven/settings.xml
+
+#job:dev logic implementation end
+
+
+
+
+#job:qa logic implementation start
+#    --- runs whenever a pull request where target branch is QA has been approved
   qa:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/qa'
-    steps:
-      - name: trigger test
-        run: echo "test QA branch triggered"
+    if: github.event.pull_request.base.ref == 'qa'
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties
+    env:
+    #POM <cloudHubDeployment>
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+      ENV: DEV
+      WORKERS: ${{ vars.WORKERS_GITHUB_VALUE }}
+      WORKERS_TYPE: ${{ vars.WORKERS_TYPE_GITHUB_VALUE }}
+      OBJECT_STORE_V2: ${{ vars.OBJECT_STORE_V2_GITHUB_VALUE }}
+      REGION: ${{ vars.REGION_GITHUB_VALUE }}
+    #POM cloudHubDeployment --> <properties>
+      prop_01_pom_var: ${{ vars.QA_PROP_01_POM_VAR_GITHUB_VALUE }}
+      prop_02_pom_var: ${{ vars.QA_PROP_02_POM_VAR_GITHUB_VALUE }}
+      prop_03_pom_var: ${{ vars.QA_PROP_03_POM_VAR_GITHUB_VALUE }}
+      prop_04_pom_var: ${{ vars.QA_PROP_04_POM_VAR_GITHUB_VALUE }}
+      prop_05_pom_var: ${{ vars.QA_PROP_05_POM_VAR_GITHUB_VALUE }}
 
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step deploys data to DEV Mulesoft env
+      #- name: Build with Maven
+        #run:  mvn clean deploy "-DmuleDeploy" "-Denv=qa" -s .maven/settings.xml
+        
+#job:qa logic implementation end
+
+
+
+
+#job:staging logic implementation start
+#    --- runs whenever a pull request where target branch is STAGING has been approved
   staging:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/staging'
-    steps:
-      - name: trigger test
-        run: echo "test STAGING branch triggered"
+    if: github.event.pull_request.base.ref == 'staging'
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties
+    env:
+    #POM <cloudHubDeployment>
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+      ENV: DEV
+      WORKERS: ${{ vars.WORKERS_GITHUB_VALUE }}
+      WORKERS_TYPE: ${{ vars.WORKERS_TYPE_GITHUB_VALUE }}
+      OBJECT_STORE_V2: ${{ vars.OBJECT_STORE_V2_GITHUB_VALUE }}
+      REGION: ${{ vars.REGION_GITHUB_VALUE }}
+    #POM cloudHubDeployment --> <properties>
+      prop_01_pom_var: ${{ vars.STAGING_PROP_01_POM_VAR_GITHUB_VALUE }}
+      prop_02_pom_var: ${{ vars.STAGING_PROP_02_POM_VAR_GITHUB_VALUE }}
+      prop_03_pom_var: ${{ vars.STAGING_PROP_03_POM_VAR_GITHUB_VALUE }}
+      prop_04_pom_var: ${{ vars.STAGING_PROP_04_POM_VAR_GITHUB_VALUE }}
+      prop_05_pom_var: ${{ vars.STAGING_PROP_05_POM_VAR_GITHUB_VALUE }}
 
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step deploys data to DEV Mulesoft env
+      #- name: Build with Maven
+        #run:  mvn clean deploy "-DmuleDeploy" "-Denv=staging" -s .maven/settings.xml
+#job:staging logic implementation end
+
+
+
+
+#job:uat logic implementation start
+#    --- runs whenever a pull request where target branch is UAT has been approved
   uat:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/uat'
-    steps:
-      - name: trigger test
-        run: echo "test UAT branch triggered"
+    if: github.event.pull_request.base.ref == 'uat'
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties
+    env:
+    #POM <cloudHubDeployment>
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+      ENV: DEV
+      WORKERS: ${{ vars.WORKERS_GITHUB_VALUE }}
+      WORKERS_TYPE: ${{ vars.WORKERS_TYPE_GITHUB_VALUE }}
+      OBJECT_STORE_V2: ${{ vars.OBJECT_STORE_V2_GITHUB_VALUE }}
+      REGION: ${{ vars.REGION_GITHUB_VALUE }}
+    #POM cloudHubDeployment --> <properties>
+      prop_01_pom_var: ${{ vars.UAT_PROP_01_POM_VAR_GITHUB_VALUE }}
+      prop_02_pom_var: ${{ vars.UAT_PROP_02_POM_VAR_GITHUB_VALUE }}
+      prop_03_pom_var: ${{ vars.UAT_PROP_03_POM_VAR_GITHUB_VALUE }}
+      prop_04_pom_var: ${{ vars.UAT_PROP_04_POM_VAR_GITHUB_VALUE }}
+      prop_05_pom_var: ${{ vars.UAT_PROP_05_POM_VAR_GITHUB_VALUE }}
 
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step deploys data to DEV Mulesoft env
+      #- name: Build with Maven
+        #run:  mvn clean deploy "-DmuleDeploy" "-Denv=uat" -s .maven/settings.xml
+#job:uat logic implementation end
+
+
+
+
+#job:prod logic implementation start
+#    --- runs whenever a pull request where target branch is PROD has been approved
   prod:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/prod'
-    steps:
-      - name: trigger test
-        run: echo "test PROD branch triggered"
+    if: github.event.pull_request.base.ref == 'prod'
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties
+    env:
+    #POM <cloudHubDeployment>
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+      ENV: DEV
+      WORKERS: ${{ vars.WORKERS_GITHUB_VALUE }}
+      WORKERS_TYPE: ${{ vars.WORKERS_TYPE_GITHUB_VALUE }}
+      OBJECT_STORE_V2: ${{ vars.OBJECT_STORE_V2_GITHUB_VALUE }}
+      REGION: ${{ vars.REGION_GITHUB_VALUE }}
+    #POM cloudHubDeployment --> <properties>
+      prop_01_pom_var: ${{ vars.PROD_PROP_01_POM_VAR_GITHUB_VALUE }}
+      prop_02_pom_var: ${{ vars.PROD_PROP_02_POM_VAR_GITHUB_VALUE }}
+      prop_03_pom_var: ${{ vars.PROD_PROP_03_POM_VAR_GITHUB_VALUE }}
+      prop_04_pom_var: ${{ vars.PROD_PROP_04_POM_VAR_GITHUB_VALUE }}
+      prop_05_pom_var: ${{ vars.PROD_PROP_05_POM_VAR_GITHUB_VALUE }}
 
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step deploys data to DEV Mulesoft env
+      #- name: Build with Maven
+        #run:  mvn clean deploy "-DmuleDeploy" "-Denv=prod" -s .maven/settings.xml
+
+#job:prod logic implementation end
 
 
 
