@@ -6,6 +6,7 @@ name: deploy project to prod env
 on:
 #1 way to trigger worflow. Start
   push:
+    branches:
       - prod
       - prod_project_1
       - prod_project_2

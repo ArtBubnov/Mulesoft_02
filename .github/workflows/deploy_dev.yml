@@ -6,6 +6,7 @@ name: deploy project to dev env
 on:
 #1 way to trigger worflow. Start
   push:
+    branches:
       - dev
       - dev_project_1
       - dev_project_2

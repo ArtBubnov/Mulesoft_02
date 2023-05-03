@@ -6,6 +6,7 @@ name: deploy project to staging env
 on:
 #1 way to trigger worflow. Start
   push:
+    branches:
       - staging
       - staging_project_1
       - staging_project_2

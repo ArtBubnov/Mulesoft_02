@@ -6,6 +6,7 @@ name: deploy project to qa env
 on:
 #1 way to trigger worflow. Start
   push:
+    branches:
       - qa
       - qa_project_1
       - qa_project_2

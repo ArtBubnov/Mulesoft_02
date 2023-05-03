@@ -6,6 +6,7 @@ name: deploy project to uat env
 on:
 #1 way to trigger worflow. Start
   push:
+    branches:
       - uat
       - uat_project_1
       - uat_project_2
