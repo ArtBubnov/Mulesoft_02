@@ -16,7 +16,7 @@ on:
 #depends on the number of projects the list of the jobs can be expanded or shortened.
 
 #job:dev               --- runs whenever a pull request, where target branch is dev,           has been approved 
-#job:dev_project_1     --- runs whenever a pull request, where target branch is dev_project_1, has been approved
+#job:dev_project_1     --- runs whenever a pull request, where target branch is dev_project_1, has been approved 
 #job:dev_project_2     --- runs whenever a pull request, where target branch is dev_project_2, has been approved
 #job:dev_project_3     --- runs whenever a pull request, where target branch is dev_project_3, has been approved
 #job:dev_project_4     --- runs whenever a pull request, where target branch is dev_project_4, has been approved
