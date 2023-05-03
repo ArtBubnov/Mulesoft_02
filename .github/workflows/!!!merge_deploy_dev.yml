@@ -4,11 +4,11 @@ name: deploy project to dev env
 on:
   push:
     branches:
-      - dev
-      - dev_project_1
-      - dev_project_2
-      - dev_project_3
-      - dev_project_4
+      - 'dev/**'
+#      - dev_project_1
+#      - dev_project_2
+#      - dev_project_3
+#      - dev_project_4
 
 
 #list of the jobs that can be runned
