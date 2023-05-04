@@ -1,7 +1,10 @@
 name: ochestration logic
 #123
+
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - 'dev**'
 
 
 jobs:
