@@ -47,6 +47,12 @@ jobs:
       #This step performs:
       # 1. add new dependencies in cache
       # 2. retrieve existing data from cache
+      - name: logger
+        run: |
+          echo "branches has been mertged"
+          echo 'the following is targer branch: '$GITHUB_EVENT_PULL_REQUEST_BASE_REF
+          echo "THIS iS DEV"
+      
       - name: Checking Cache
         uses: actions/cache@v3
         with:
