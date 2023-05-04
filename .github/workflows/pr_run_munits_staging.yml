@@ -1,0 +1,41 @@
+name: run munit tests before deploy to staging env
+
+on:
+  workflow_call:
+
+
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
+    env:
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: logger
+        run: |
+          echo "branches has been mertged"
+          echo 'the following is targer branch: '$GITHUB_EVENT_PULL_REQUEST_BASE_REF
+          echo "THIS iS STAGING"
+
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step runs munit tests env
+      #- name: Build with Maven
+        #run:  mvn clean test "-DskipMunitBoolean=false" -s .maven/settings.xml
