@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: logger
-        run: echo "test"
+        run: echo $GITHUB_BASE_REF
 
   dev_pr_munits:
     #if: github.event.pull_request.base.ref == 'dev**'
