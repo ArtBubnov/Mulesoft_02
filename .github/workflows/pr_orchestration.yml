@@ -6,4 +6,4 @@ on:
 
 jobs:
   dev:
-    uses: ./.github/workflows/test/test2.yml
+    uses: ./.github/workflows/test2.yml
