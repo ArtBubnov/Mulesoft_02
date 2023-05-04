@@ -13,6 +13,9 @@ on:
 
 
 jobs:
+  logger:
+    echo github.event.pull_request.base.ref
+
   dev_pr_munits:
     #if: github.event.pull_request.base.ref == 'dev**'
     if: contains(github.event.pull_request.base.ref, 'dev')
