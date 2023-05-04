@@ -4,27 +4,14 @@ name: deploy project to dev env
 on:
   push:
     branches:
-      - dev
-      - dev_project_1
-      - dev_project_2
-      - dev_project_3
-      - dev_project_4
+      - 'dev**'
 
 
 #list of the jobs that can be runned
 #depends on the context of an event
-#depends on the number of projects the list of the jobs can be expanded or shortened.
-
-#job:dev               --- runs whenever a pull request, where target branch is dev,           has been approved
-#job:dev_project_1     --- runs whenever a pull request, where target branch is dev_project_1, has been approved
-#job:dev_project_2     --- runs whenever a pull request, where target branch is dev_project_2, has been approved
-#job:dev_project_3     --- runs whenever a pull request, where target branch is dev_project_3, has been approved
-#job:dev_project_4     --- runs whenever a pull request, where target branch is dev_project_4, has been approved
+#job:dev --- runs whenever a pull request, where target branch name contais "dev" in the title, has been approved
 
 jobs:
-
-  #job:dev logic implementation start
-  #    --- runs whenever a pull request, where target branch is dev, has been approved
   dev:
     runs-on: ubuntu-latest
     #in the env section below variables for mulesoft project pom file for the following sections should be defined:
@@ -51,6 +38,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: logger
+        run: |
+          echo "branches has been mertged"
+          echo 'the following is targer branch: '$GITHUB_REF_NAME
+
       #This step performs:
       # 1. add new dependencies in cache
       # 2. retrieve existing data from cache
@@ -65,5 +57,3 @@ jobs:
       #This step deploys data to DEV Mulesoft env
       #- name: Build with Maven
         #run:  mvn clean deploy "-DmuleDeploy" "-Denv=dev" "-DskipMunitBoolean=true" -s .maven/settings.xml
-
-#job:dev logic implementation end
