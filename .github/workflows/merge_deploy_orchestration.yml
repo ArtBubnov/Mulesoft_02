@@ -19,7 +19,7 @@ jobs:
         run: echo $GITHUB_REF_NAME
 
   dev_pr_munits:
-    if: contains(github.ref.name, 'dev')
+    if: contains(${{ github.ref.name }}, 'dev')
     uses: ./.github/workflows/pr_run_munits_dev.yml
 
   qa_pr_munits:
