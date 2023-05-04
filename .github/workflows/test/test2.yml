@@ -1,0 +1,11 @@
+name: deploy
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: logger
+        run: |
+          echo "test child 1"
+          echo "test child 2"
+          echo "test child 3"

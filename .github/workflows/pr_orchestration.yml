@@ -1,0 +1,9 @@
+name: ochestration logic
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  dev:
+    uses: ./.github/workflows/test/test2.yml
