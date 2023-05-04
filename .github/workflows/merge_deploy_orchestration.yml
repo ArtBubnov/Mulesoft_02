@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: logger
-        run: echo $GITHUB_BASE_REF
+        run: echo $GITHUB_REF_NAME
 
   dev_pr_munits:
     if: contains(github.event.pull_request.base.ref, 'dev')
