@@ -1,5 +1,4 @@
 name: pr ochestration logic
-#123
 
 on:
   pull_request:
@@ -15,9 +14,27 @@ on:
 
 jobs:
   dev_pr_munits:
-    if: github.event.pull_request.base.ref == 'dev'
+    #if: github.event.pull_request.base.ref == 'dev**'
+    if: contains(github.event.pull_request.base.ref, 'dev')
+    #uses: ./.github/workflows/run_munits_dev.yml
     uses: ./.github/workflows/test2.yml
 
   qa_pr_munits:
-    if: github.event.pull_request.base.ref == 'qa'
+    if: github.event.pull_request.base.ref == 'qa**'
+    #uses: ./.github/workflows/run_munits_qa.yml
+    uses: ./.github/workflows/test2.yml
+    
+  staging_pr_munits:
+    if: github.event.pull_request.base.ref == 'staging**'
+    #uses: ./.github/workflows/test2.yml
+    uses: ./.github/workflows/test2.yml
+
+  uat_pr_munits:
+    if: github.event.pull_request.base.ref == 'uat**'
+    #uses: ./.github/workflows/test2.yml
+    uses: ./.github/workflows/test2.yml
+
+  prod_pr_munits:
+    if: github.event.pull_request.base.ref == 'prod**'
+    #uses: ./.github/workflows/test2.yml
     uses: ./.github/workflows/test2.yml

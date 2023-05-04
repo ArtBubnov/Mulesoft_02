@@ -1,43 +1,34 @@
-name: deploy project to dev env
+name: run munit tests before deploy to qa env
 
-#runs whenever a pull request has been approved
+
+#runs whenever a pull request 
+#1. has been created
+#2. has been reopened
+#3. source or target branch has been extended by pushing additional logic if pull request is opened 
 on:
-  pull_request_review:
+  pull_request:
     branches:
-      - 'dev**'
-    types: [submitted]
+      - 'qa**'
+    types: [opened, reopened, synchronize]
 
 
 
 
 #list of the jobs that can be runned
 #depends on the context of an event
-
-#job:dev --- runs whenever a pull request, where target branch is dev, has been approved
+#job:qa --- runs whenever a pull request, where target branch is qa, has been created
 
 
 jobs:
-  dev:
+  qa:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.base.ref == 'dev'
+    if: github.event.pull_request.base.ref == 'qa'
     #in the env section below variables for mulesoft project pom file for the following sections should be defined:
     #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
     #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
     env:
-    #POM <cloudHubDeployment>
       PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
       PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
-      ENV: DEV
-      WORKERS: ${{ vars.WORKERS_GITHUB_VALUE }}
-      WORKERS_TYPE: ${{ vars.WORKERS_TYPE_GITHUB_VALUE }}
-      OBJECT_STORE_V2: ${{ vars.OBJECT_STORE_V2_GITHUB_VALUE }}
-      REGION: ${{ vars.REGION_GITHUB_VALUE }}
-    #POM cloudHubDeployment --> <properties>
-      prop_01_pom_var: ${{ vars.DEV_PROP_01_POM_VAR_GITHUB_VALUE }}
-      prop_02_pom_var: ${{ vars.DEV_PROP_02_POM_VAR_GITHUB_VALUE }}
-      prop_03_pom_var: ${{ vars.DEV_PROP_03_POM_VAR_GITHUB_VALUE }}
-      prop_04_pom_var: ${{ vars.DEV_PROP_04_POM_VAR_GITHUB_VALUE }}
-      prop_05_pom_var: ${{ vars.DEV_PROP_05_POM_VAR_GITHUB_VALUE }}
 
     steps:
       #This action checks-out your repository under $GITHUB_WORKSPACE
@@ -51,8 +42,8 @@ jobs:
         run: |
           echo "branches has been mertged"
           echo 'the following is targer branch: '$GITHUB_EVENT_PULL_REQUEST_BASE_REF
-          echo "THIS iS DEV"
-      
+          echo "THIS iS QA"
+
       - name: Checking Cache
         uses: actions/cache@v3
         with:
@@ -61,6 +52,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven- 
 
-      #This step deploys data to DEV Mulesoft env
+      #This step runs munit tests env
       #- name: Build with Maven
-        #run:  mvn clean deploy "-DmuleDeploy" "-Denv=dev" "-DskipMunitBoolean=true" -s .maven/settings.xml
+        #run:  mvn clean test "-DskipMunitBoolean=false" -s .maven/settings.xml
