@@ -20,6 +20,21 @@ jobs:
         run: echo $GITHUB_BASE_REF
 
   dev_pr_munits:
-    #if: github.event.pull_request.base.ref == 'dev**'
+    if: contains(github.event.pull_request.base.ref, 'dev')
+    uses: ./.github/workflows/test2.yml
+
+  qa_pr_munits:
     if: contains(github.event.pull_request.base.ref, 'qa')
+    uses: ./.github/workflows/test2.yml
+
+  staging_pr_munits:
+    if: contains(github.event.pull_request.base.ref, 'staging')
+    uses: ./.github/workflows/test2.yml
+
+  uat_pr_munits:
+    if: contains(github.event.pull_request.base.ref, 'uat')
+    uses: ./.github/workflows/test2.yml
+
+  prod_pr_munits:
+    if: contains(github.event.pull_request.base.ref, 'prod')
     uses: ./.github/workflows/test2.yml
