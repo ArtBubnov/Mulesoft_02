@@ -16,7 +16,7 @@ jobs:
   logger:
     steps:
       - name: logger
-        run: echo github.event.pull_request.base.ref
+        run: echo "test"
 
   dev_pr_munits:
     #if: github.event.pull_request.base.ref == 'dev**'
