@@ -1,6 +1,6 @@
 name: deploy project to dev env
 
-#runs whenever a pull request has been approved
+#this scenario can be triggered only by pr_run_munits_orchestration scenario
 on:
   workflow_call:
 

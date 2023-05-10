@@ -1,5 +1,6 @@
 name: run munit tests before deploy to staging env
 
+#this scenario can be triggered only by pr_run_munits_orchestration scenario
 on:
   workflow_call:
 
