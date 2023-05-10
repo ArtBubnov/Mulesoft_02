@@ -1,0 +1,39 @@
+name: pr ochestration logic
+
+on:
+  push:
+    branches:
+      - 'dev**'
+      - 'qa**'
+      - 'staging**'
+      - 'uat**'
+      - 'prod**'
+
+
+
+jobs:
+  logger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: logger
+        run: echo $GITHUB_REF_NAME
+
+  dev_pr_munits:
+    if: contains(${{ github.ref.name }}, 'dev')
+    uses: ./.github/workflows/merge_deploy_dev.yml
+
+  qa_pr_munits:
+    if: contains(${{ github.ref.name }}, 'qa')
+    uses: ./.github/workflows/merge_deploy_qa.yml
+
+  staging_pr_munits:
+    if: contains(${{ github.ref.name }}, 'staging')
+    uses: ./.github/workflows/merge_deploy_staging.yml
+
+  uat_pr_munits:
+    if: contains(${{ github.ref.name }}, 'uat')
+    uses: ./.github/workflows/merge_deploy_uat.yml
+
+  prod_pr_munits:
+    if: contains(${{ github.ref.name }}, 'prod')
+    uses: ./.github/workflows/merge_deploy_prod.yml

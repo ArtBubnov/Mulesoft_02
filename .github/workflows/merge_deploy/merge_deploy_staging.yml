@@ -1,15 +1,7 @@
 name: deploy project to staging env
 
-#runs whenever branches are merged during pull request
 on:
-  push:
-    branches:
-      - 'staging**'
-
-
-#list of the jobs that can be runned
-#depends on the context of an event
-#job:staging --- runs whenever a pull request, where target branch name contais "staging" in the title, has been approved
+  workflow_call:
 
 jobs:
   staging:

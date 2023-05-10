@@ -1,25 +1,26 @@
-name: pr ochestration logic
-
+name: pr approve deploy ochestration logic
 on:
-  push:
+  pull_request:
     branches:
       - 'dev**'
       - 'qa**'
       - 'staging**'
       - 'uat**'
       - 'prod**'
+    types: [submitted]
 
 
 
 jobs:
+
   logger:
     runs-on: ubuntu-latest
     steps:
       - name: logger
-        run: echo $GITHUB_REF_NAME
+        run: echo $GITHUB_BASE_REF
 
   dev_pr_munits:
-    if: contains(${{ github.ref.name }}, 'dev')
+    if: contains(github.event.pull_request.base.ref, 'dev')
     uses: ./.github/workflows/pr_run_munits_dev.yml
 
   qa_pr_munits:

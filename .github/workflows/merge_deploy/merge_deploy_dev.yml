@@ -1,15 +1,7 @@
 name: deploy project to dev env
 
-#runs whenever branches are merged during pull request
 on:
-  push:
-    branches:
-      - 'dev**'
-
-
-#list of the jobs that can be runned
-#depends on the context of an event
-#job:dev --- runs whenever a pull request, where target branch name contais "dev" in the title, has been approved
+  workflow_call:
 
 jobs:
   dev:

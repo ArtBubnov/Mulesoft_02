@@ -2,24 +2,12 @@ name: deploy project to dev env
 
 #runs whenever a pull request has been approved
 on:
-  pull_request_review:
-    branches:
-      - 'dev**'
-    types: [submitted]
-
-
-
-
-#list of the jobs that can be runned
-#depends on the context of an event
-
-#job:dev --- runs whenever a pull request, where target branch is dev, has been approved
+  workflow_call:
 
 
 jobs:
   dev:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.base.ref == 'dev'
     #in the env section below variables for mulesoft project pom file for the following sections should be defined:
     #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
     #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 

@@ -1,15 +1,7 @@
 name: deploy project to qa env
 
-#runs whenever branches are merged during pull request
 on:
-  push:
-    branches:
-      - 'qa**'
-
-
-#list of the jobs that can be runned
-#depends on the context of an event
-#job:qa --- runs whenever a pull request, where target branch name contais "qa" in the title, has been approved
+  workflow_call:
 
 jobs:
   qa:
