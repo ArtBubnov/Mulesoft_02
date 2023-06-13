@@ -41,6 +41,7 @@
 					<workerType>${env.WORKERS_TYPE}</workerType>
 					<objectStoreV2>${env.OBJECT_STORE_V2}</objectStoreV2>
 					<region>${env.REGION}</region>
+					<businessGroup>${env.BUSINESSGROUPID}</businessGroup>
 					<properties>
 						<prop_01_pom_node>${env.prop_01_pom_var}</prop_01_pom_node>
 						<prop_02_pom_node>${env.prop_02_pom_var}</prop_02_pom_node>
