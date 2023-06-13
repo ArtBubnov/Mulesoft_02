@@ -24,34 +24,3 @@ jobs:
 
   #this scenario will be executed if the target branch is DEV
   #this scenario will run "USES" section github actions workflow
-  dev_pr_munits:
-    if: contains(${{ github.ref.name }}, 'dev')
-    uses: ./.github/workflows/merge_deploy_dev.yml
-
-
-  #this scenario will be executed if the target branch is QA
-  #this scenario will run "USES" section github actions workflow
-  qa_pr_munits:
-    if: contains(${{ github.ref.name }}, 'qa')
-    uses: ./.github/workflows/merge_deploy_qa.yml
-
-
-  #this scenario will be executed if the target branch is STAGING
-  #this scenario will run "USES" section github actions workflow
-  staging_pr_munits:
-    if: contains(${{ github.ref.name }}, 'staging')
-    uses: ./.github/workflows/merge_deploy_staging.yml
-
-
-  #this scenario will be executed if the target branch is UAT
-  #this scenario will run "USES" section github actions workflow
-  uat_pr_munits:
-    if: contains(${{ github.ref.name }}, 'uat')
-    uses: ./.github/workflows/merge_deploy_uat.yml
-
-
-  #this scenario will be executed if the target branch is PROD
-  #this scenario will run "USES" section github actions workflow
-  prod_pr_munits:
-    if: contains(${{ github.ref.name }}, 'prod')
-    uses: ./.github/workflows/merge_deploy_prod.yml
