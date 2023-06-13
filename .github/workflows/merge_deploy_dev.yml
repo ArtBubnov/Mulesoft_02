@@ -51,4 +51,4 @@ jobs:
 
       #This step deploys data to DEV Mulesoft env
       - name: Build with Maven
-        run:  mvn clean deploy "-DmuleDeploy" "-Denv=Sandbox" "-DskipMunitBoolean=true" "-Danypoint.platform.client_id=3470621d3b76458a8510c6bdc942915d" "-Danypoint.platform.client_secret=0b206F54d63c4FC88280b54e78cABC92" -s .maven/settings.xml
+        run:  mvn clean deploy "-DmuleDeploy" "-Denv=Sandbox" "-DskipMunitBoolean=true" "-Danypoint.platform.client_id=20f8dfb151a449919157340fadcc8e41" "-Danypoint.platform.client_secret=7c77704A6C544879acFcB2a17453C8be" -s .maven/settings.xml
