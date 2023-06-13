@@ -48,5 +48,5 @@ jobs:
             ${{ runner.os }}-maven- 
 
       #This step deploys data to DEV Mulesoft env
-      #- name: Build with Maven
-        #run:  mvn clean deploy "-DmuleDeploy" "-Denv=dev" "-DskipMunitBoolean=true" -s .maven/settings.xml
+      - name: Build with Maven
+        run:  mvn clean deploy "-DmuleDeploy" "-Denv=Sandbox" "-DskipMunitBoolean=true" -s .maven/settings.xml
