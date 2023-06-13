@@ -35,7 +35,7 @@
 					<muleVersion>4.4.0</muleVersion>
 					<username>${env.PLATFORM_USERNAME}</username>
 					<password>${env.PLATFORM_PASSWORD}</password>
-					<applicationName>${project.artifactId}-${env.ENV}</applicationName>
+					<applicationName>githubCiCdTest</applicationName>
 					<environment>${env.ENV}</environment>
 					<workers>${env.WORKERS}</workers>
 					<workerType>${env.WORKERS_TYPE}</workerType>
