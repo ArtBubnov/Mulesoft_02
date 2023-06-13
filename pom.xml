@@ -33,13 +33,13 @@
 				<configuration>
 				<cloudHubDeployment>
 					<muleVersion>4.4.0</muleVersion>
+					<objectStoreV2>true</objectStoreV2>
 					<username>${env.PLATFORM_USERNAME}</username>
 					<password>${env.PLATFORM_PASSWORD}</password>
 					<applicationName>githubCiCdTest</applicationName>
 					<environment>${env.ENV}</environment>
 					<workers>${env.WORKERS}</workers>
 					<workerType>${env.WORKERS_TYPE}</workerType>
-					<objectStoreV2>${env.OBJECT_STORE_V2}</objectStoreV2>
 					<region>${env.REGION}</region>
 					<businessGroup>${env.BUSINESSGROUPID}</businessGroup>
 					<uri>${env.URI}</uri>

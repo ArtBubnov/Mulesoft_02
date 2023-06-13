@@ -16,18 +16,10 @@ jobs:
       PLATFORM_PASSWORD: zMyBSDCxWlkiOM17ho5NyNe7D3V4THto
       BUSINESSGROUPID: 5fcc384e-c766-4597-9669-5a9d3f1fbba3
       ENV: Sandbox
-      WORKERS: ${{ vars.WORKERS_GITHUB_VALUE }}
-      WORKERS_TYPE: ${{ vars.WORKERS_TYPE_GITHUB_VALUE }}
-      OBJECT_STORE_V2: ${{ vars.OBJECT_STORE_V2_GITHUB_VALUE }}
+      WORKERS: 1
+      WORKERS_TYPE: Micro
       REGION: eu-central-1
       URI: https://eu1.anypoint.mulesoft.com
-    #POM cloudHubDeployment --> <properties>
-      prop_01_pom_var: ${{ vars.DEV_PROP_01_POM_VAR_GITHUB_VALUE }}
-      prop_02_pom_var: ${{ vars.DEV_PROP_02_POM_VAR_GITHUB_VALUE }}
-      prop_03_pom_var: ${{ vars.DEV_PROP_03_POM_VAR_GITHUB_VALUE }}
-      prop_04_pom_var: ${{ vars.DEV_PROP_04_POM_VAR_GITHUB_VALUE }}
-      prop_05_pom_var: ${{ vars.DEV_PROP_05_POM_VAR_GITHUB_VALUE }}
-
     steps:
       #This action checks-out your repository under $GITHUB_WORKSPACE
       - name: Checkout repository
@@ -51,4 +43,12 @@ jobs:
 
       #This step deploys data to DEV Mulesoft env
       - name: Build with Maven
-        run:  mvn clean deploy "-DmuleDeploy" "-Denv=Sandbox" "-DskipMunitBoolean=true" "-Danypoint.platform.client_id=20f8dfb151a449919157340fadcc8e41" "-Danypoint.platform.client_secret=7c77704A6C544879acFcB2a17453C8be" -s .maven/settings.xml
+        run:  mvn clean deploy "-DmuleDeploy"
+                               "-Denv=Sandbox"
+                               "-DskipMunitBoolean=true"
+                               "-Danypoint.platform.analytics_base_uri=https://analytics-ingest.eu1.anypoint.mulesoft.com"
+                               "-Danypoint.platform.config.analytics.agent.enabled=true"
+                               "-Danypoint.platform.client_id=20f8dfb151a449919157340fadcc8e41"
+                               "-Danypoint.platform.client_secret=7c77704A6C544879acFcB2a17453C8be"
+                               "-Danypoint.platform.base_uri=https://eu1.anypoint.mulesoft.com"
+                               -s .maven/settings.xml
