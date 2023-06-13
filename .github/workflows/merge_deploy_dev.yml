@@ -8,7 +8,7 @@ jobs:
   dev:
     runs-on: ubuntu-latest
     #in the env section below variables for mulesoft project pom file for the following sections should be defined:  
-    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment 
     #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
     env:
     #POM <cloudHubDeployment>
