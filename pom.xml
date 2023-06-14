@@ -41,7 +41,7 @@
 					<workers>${env.WORKERS}</workers>
 					<workerType>${env.WORKERS_TYPE}</workerType>
 					<region>${env.REGION}</region>
-					<businessGroup>${env.BUSINESSGROUPID}</businessGroup>
+					<businessGroup>5fcc384e-c766-4597-9669-5a9d3f1fbba3</businessGroup>
 					<uri>${env.URI}</uri>
 					<properties>
 						<prop_01_pom_node>${env.prop_01_pom_var}</prop_01_pom_node>
