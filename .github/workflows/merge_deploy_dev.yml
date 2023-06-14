@@ -12,8 +12,8 @@ jobs:
     #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
     env:
     #POM <cloudHubDeployment>
-      PLATFORM_USERNAME: "artemBubnov"
-      PLATFORM_PASSWORD: "mg5uGwRQ7XM2MeEb"
+      PLATFORM_USERNAME: artemBubnov
+      PLATFORM_PASSWORD: mg5uGwRQ7XM2MeEb
       BUSINESSGROUPID: 5fcc384e-c766-4597-9669-5a9d3f1fbba3
       ENV: Sandbox
       WORKERS: 1
