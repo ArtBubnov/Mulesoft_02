@@ -43,6 +43,6 @@ jobs:
 
       #This step deploys data to DEV Mulesoft env
       - name: Build with Maven
-        run: mnv install
-        
+        run: mvn install
+
         #run:  mvn clean deploy "-DmuleDeploy" "-Denv=Sandbox" "-DskipMunitBoolean=true" "-Danypoint.platform.analytics_base_uri=https://analytics-ingest.eu1.anypoint.mulesoft.com" "-Danypoint.platform.config.analytics.agent.enabled=true" "-Danypoint.platform.client_id=20f8dfb151a449919157340fadcc8e41" "-Danypoint.platform.client_secret=7c77704A6C544879acFcB2a17453C8be" "-Danypoint.platform.base_uri=https://eu1.anypoint.mulesoft.com" -s .maven/settings.xml
