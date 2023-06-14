@@ -32,7 +32,7 @@ jobs:
 
       #This step performs:
       # 1. add new dependencies in cache
-      # 2. retrieve existing data from cache
+      # 2. retrieve existing data from cache 
       - name: Checking Cache
         uses: actions/cache@v3
         with:
