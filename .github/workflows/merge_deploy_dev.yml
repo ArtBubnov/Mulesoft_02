@@ -54,4 +54,4 @@ jobs:
                               "-Dap.analytics_base_uri=https://analytics-ingest.eu1.anypoint.mulesoft.com"
                               "-Dap.base_uri=https://eu1.anypoint.mulesoft.com"
                               "-Danypoint.platform.config.analytics.agent.enabled=true"                        
-                              -s .maven/settings.xml -e
+                              -s .maven/settings.xml -X
