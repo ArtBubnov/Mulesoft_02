@@ -41,7 +41,7 @@
 					<workers>${env.WORKERS}</workers>
 					<workerType>${env.WORKERS_TYPE}</workerType>
 					<region>${env.REGION}</region>
-					<businessGroup>9e6ca832-d709-424c-922c-505db169f4c0</businessGroup>
+					<businessGroup>VRP Consulting</businessGroup>
 					<uri>${env.URI}</uri>
 					<properties>
 						<prop_01_pom_node>${env.prop_01_pom_var}</prop_01_pom_node>
