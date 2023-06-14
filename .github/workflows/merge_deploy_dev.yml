@@ -13,7 +13,7 @@ jobs:
     env:
     #POM <cloudHubDeployment>
       PLATFORM_USERNAME: "artemBubnov"
-      PLATFORM_PASSWORD: "zMyBSDCxWlkiOM17ho5NyNe7D3V4THto"
+      PLATFORM_PASSWORD: "mg5uGwRQ7XM2MeEb"
       BUSINESSGROUPID: 5fcc384e-c766-4597-9669-5a9d3f1fbba3
       ENV: Sandbox
       WORKERS: 1
