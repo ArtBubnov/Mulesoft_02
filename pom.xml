@@ -36,7 +36,7 @@
 					<objectStoreV2>true</objectStoreV2>
 					<username>${env.PLATFORM_USERNAME}</username>
 					<password>${env.PLATFORM_PASSWORD}</password>
-					<applicationName>${artifactId}-${env}-env</applicationName>
+					<applicationName>${project.artifactId}-${env}-env</applicationName>
 					<environment>${env.ENV}</environment>
 					<workers>${env.WORKERS}</workers>
 					<workerType>${env.WORKERS_TYPE}</workerType>
