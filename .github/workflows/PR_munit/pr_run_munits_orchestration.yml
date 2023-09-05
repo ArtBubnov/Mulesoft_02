@@ -1,0 +1,59 @@
+#this scenario will be executed in case of creation of a Pull Request
+name: pr ochestration logic
+
+#depends on the target branch one of the following scenarios:
+on:
+  pull_request:
+    #PR target branch is: 
+    branches:
+      - 'dev**'
+      - 'qa**'
+      - 'staging**'
+      - 'uat**'
+      - 'prod**'
+    types: [opened, reopened, synchronize]
+
+
+
+jobs:
+
+  logger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: logger
+        run: echo $GITHUB_BASE_REF
+
+
+  #this scenario will be executed if the target branch is DEV
+  #this scenario will run "USES" section github actions workflow
+  dev_pr_munits:
+    if: contains(github.event.pull_request.base.ref, 'dev')
+    uses: ./.github/workflows/pr_run_munits_dev.yml
+
+
+  #this scenario will be executed if the target branch is QA
+  #this scenario will run "USES" section github actions workflow
+  qa_pr_munits:
+    if: contains(github.event.pull_request.base.ref, 'qa')
+    uses: ./.github/workflows/pr_run_munits_qa.yml
+
+
+  #this scenario will be executed if the target branch is STAGING
+  #this scenario will run "USES" section github actions workflow
+  staging_pr_munits:
+    if: contains(github.event.pull_request.base.ref, 'staging')
+    uses: ./.github/workflows/pr_run_munits_staging.yml
+
+
+  #this scenario will be executed if the target branch is UAT
+  #this scenario will run "USES" section github actions workflow
+  uat_pr_munits:
+    if: contains(github.event.pull_request.base.ref, 'uat')
+    uses: ./.github/workflows/pr_run_munits_uat.yml
+
+
+  #this scenario will be executed if the target branch is PROD
+  #this scenario will run "USES" section github actions workflow
+  prod_pr_munits:
+    if: contains(github.event.pull_request.base.ref, 'prod')
+    uses: ./.github/workflows/pr_run_munits_prod.yml

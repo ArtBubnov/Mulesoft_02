@@ -1,0 +1,54 @@
+name: deploy project to dev env
+
+#this scenario can be triggered only by pr_run_munits_orchestration scenario
+on:
+  workflow_call:
+
+
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    #in the env section below variables for mulesoft project pom file for the following sections should be defined:
+    #1. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment
+    #2. build --> plugin (org.mule.tools.maven) --> cloudHubDeployment --> properties 
+    env:
+    #POM <cloudHubDeployment>
+      PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME_GITHUB_SECRET_VALUE }}
+      PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD_GITHUB_SECRET_VALUE }}
+      ENV: DEV
+      WORKERS: ${{ vars.WORKERS_GITHUB_VALUE }}
+      WORKERS_TYPE: ${{ vars.WORKERS_TYPE_GITHUB_VALUE }}
+      OBJECT_STORE_V2: ${{ vars.OBJECT_STORE_V2_GITHUB_VALUE }}
+      REGION: ${{ vars.REGION_GITHUB_VALUE }}
+    #POM cloudHubDeployment --> <properties>
+      prop_01_pom_var: ${{ vars.DEV_PROP_01_POM_VAR_GITHUB_VALUE }}
+      prop_02_pom_var: ${{ vars.DEV_PROP_02_POM_VAR_GITHUB_VALUE }}
+      prop_03_pom_var: ${{ vars.DEV_PROP_03_POM_VAR_GITHUB_VALUE }}
+      prop_04_pom_var: ${{ vars.DEV_PROP_04_POM_VAR_GITHUB_VALUE }}
+      prop_05_pom_var: ${{ vars.DEV_PROP_05_POM_VAR_GITHUB_VALUE }}
+
+    steps:
+      #This action checks-out your repository under $GITHUB_WORKSPACE
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      #This step performs:
+      # 1. add new dependencies in cache
+      # 2. retrieve existing data from cache
+      - name: logger
+        run: |
+          echo "branches has been mertged"
+          echo 'the following is targer branch: '$GITHUB_EVENT_PULL_REQUEST_BASE_REF
+          echo "THIS iS DEV"
+      
+      - name: Checking Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven- 
+
+      #This step deploys data to DEV Mulesoft env
+      #- name: Build with Maven
+        #run:  mvn clean deploy "-DmuleDeploy" "-Denv=dev" "-DskipMunitBoolean=true" -s .maven/settings.xml

@@ -1,0 +1,29 @@
+#this scenario will be executed in case of pushing a new part of logic to the target branch via PR merge
+name: on merge ochestration logic
+
+#depends on the target branch one of the following scenarios will be executed:
+on:
+  push:
+    #target branch is: 
+    branches:
+      - 'dev**'
+      - 'qa**'
+      - 'staging**'
+      - 'uat**'
+      - 'prod**'
+
+
+
+jobs:
+  logger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: logger
+        run: echo $GITHUB_REF_NAME
+
+
+  #this scenario will be executed if the target branch is DEV
+  #this scenario will run "USES" section github actions workflow
+  dev_push:
+    if: contains(${{ github.ref.name }}, 'dev')
+    uses: ./.github/workflows/merge_deploy_dev.yml
